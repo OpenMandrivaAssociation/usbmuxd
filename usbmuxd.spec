@@ -8,11 +8,11 @@ Version:	0.1.3
 Release:	%mkrel 1
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 
-Group:		Applications/System
+Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
 URL:		http://cgit.pims.selfip.net/usbmuxd/
 Source0:	http://cgit.pims.selfip.net/%{name}/snapshot/%{name}-%{version}.tar.gz
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires:	libusb-devel
 BuildRequires:	automake autoconf libtool
@@ -33,7 +33,7 @@ interact with Apple's iPod Touch and iPhone.
 
 %package -n %libnamedev
 Summary: Development package for %{name}
-Group: Development/Libraries
+Group: Development/C
 Requires: %libname = %version
 Provides: %name-devel = %version-%release
 
