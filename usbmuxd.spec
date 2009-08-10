@@ -4,14 +4,14 @@
 %define libnamedev %mklibname -d usbmuxd
 
 Name:		%{name}
-Version:	0.1.3
+Version:	0.1.4
 Release:	%mkrel 1
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 
 Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
 URL:		http://cgit.pims.selfip.net/usbmuxd/
-Source0:	http://cgit.pims.selfip.net/%{name}/snapshot/%{name}-%{version}.tar.gz
+Source0:	http://cgit.pims.selfip.net/%{name}/snapshot/%{name}-%{version}.tar.bz2
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires:	libusb-devel
