@@ -1,21 +1,25 @@
 %define name usbmuxd
-%define major 0
+%define major 1
 %define libname %mklibname usbmuxd %major
 %define libnamedev %mklibname -d usbmuxd
+%define extraver rc2
 
 Name:		%{name}
-Version:	0.1.4
-Release:	%mkrel 2
+Version:	1.0.0
+Release:	%mkrel 0.%{extraver}.1
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 
 Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
-URL:		http://cgit.pims.selfip.net/usbmuxd/
-Source0:	http://cgit.pims.selfip.net/%{name}/snapshot/%{name}-%{version}.tar.bz2
+URL:		http://marcansoft.com/blog/iphonelinux/usbmuxd/
+Source0:	http://marcansoft.com/uploads/usbmuxd/%{name}-%{version}%{?extraver:-%{extraver}}.tar.bz2
+Patch0:		usbmuxd-1.0.0-rc2-udev-usbmux-user-acl.patch
+Patch100:	0100-Fix-USB-pid-range-check-was-trying-to-claim-all-Appl.patch
+Patch101:	0101-Fix-signal-handling-and-work-around-a-udev-bug.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires:	libusb-devel
-BuildRequires:	automake autoconf libtool
+BuildRequires:	cmake
 
 %description
 usbmuxd is a daemon used for communicating with Apple's iPod Touch and iPhone
@@ -41,22 +45,25 @@ Provides: %name-devel = %version-%release
 Files for development with %{name}.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}%{?extraver:-%{extraver}}
+%apply_patches
 
 %build
-%configure2_5x
+%cmake
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-#rm -f $RPM_BUILD_ROOT/%{_libdir}/*.{a,la}
-%makeinstall_std
-# Install udev rules in the correct location
-rm -rf $RPM_BUILD_ROOT/%{_sysconfdir}/udev/rules.d/
-install -D -m0644 udev/85-usbmuxd.rules $RPM_BUILD_ROOT/lib/udev/rules.d/85-usbmuxd.rules
+rm -rf %{buildroot}
+%makeinstall_std -C build
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
+
+%pre
+%_pre_useradd usbmux /proc /sbin/nologin
+
+%postun
+%_postun_userdel usbmux
 
 %if %mdkversion < 200900
 %post -n %libname -p /sbin/ldconfig
@@ -67,20 +74,19 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%doc AUTHORS README COPYING
+%doc AUTHORS README
 /lib/udev/rules.d/85-usbmuxd.rules
 %{_bindir}/iproxy
 %{_sbindir}/usbmuxd
 
 %files -n %libname
 %defattr(-,root,root,-)
-%{_libdir}/libusbmuxd.so.*
+%{_libdir}/libusbmuxd.so.%{major}*
 
 %files -n %libnamedev
 %defattr(-,root,root,-)
 %doc README.devel
 %{_includedir}/*.h
 %{_libdir}/libusbmuxd.so
-%{_libdir}/libusbmuxd*a
 %{_libdir}/pkgconfig/libusbmuxd.pc
 
