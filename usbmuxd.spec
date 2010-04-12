@@ -6,7 +6,7 @@
 
 Name:		%{name}
 Version:	1.0.3
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 
 Group:		System/Kernel and hardware 
