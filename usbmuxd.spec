@@ -5,8 +5,8 @@
 #define extraver rc2
 
 Name:		%{name}
-Version:	1.0.3
-Release:	%mkrel 2
+Version:	1.0.4
+Release:	%mkrel 1
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 
 Group:		System/Kernel and hardware 
