@@ -6,7 +6,7 @@
 
 Name:		%{name}
 Version:	1.0.5
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 
 Group:		System/Kernel and hardware 
@@ -18,6 +18,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires:	libusb-devel
 BuildRequires:	cmake
+BuildRequires:	libplist-devel
 
 %description
 usbmuxd is a daemon used for communicating with Apple's iPod Touch and iPhone
