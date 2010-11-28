@@ -2,21 +2,19 @@
 %define major 1
 %define libname %mklibname usbmuxd %major
 %define libnamedev %mklibname -d usbmuxd
-#define extraver rc2
 
 Name:		%{name}
-Version:	1.0.5
-Release:	%mkrel 2
+Version:	1.0.6
+Release:	%mkrel 1
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 
 Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
 URL:		http://marcansoft.com/blog/iphonelinux/usbmuxd/
 Source0:	http://marcansoft.com/uploads/usbmuxd/%{name}-%{version}%{?extraver:-%{extraver}}.tar.bz2
-Patch0:		usbmuxd-1.0.0-rc2-udev-usbmux-user-acl.patch
+Patch0:		usbmuxd-1.0.6-udev-usbmux-user-acl.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-
-BuildRequires:	libusb-devel
+BuildRequires:	libusb-devel >= 1.0.3
 BuildRequires:	cmake
 BuildRequires:	libplist-devel
 
