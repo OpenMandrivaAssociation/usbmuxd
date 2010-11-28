@@ -14,7 +14,7 @@ URL:		http://marcansoft.com/blog/iphonelinux/usbmuxd/
 Source0:	http://marcansoft.com/uploads/usbmuxd/%{name}-%{version}%{?extraver:-%{extraver}}.tar.bz2
 Patch0:		usbmuxd-1.0.6-udev-usbmux-user-acl.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	libusb-devel >= 1.0.3
+BuildRequires:	usb1.0-devel >= 1.0.3
 BuildRequires:	cmake
 BuildRequires:	libplist-devel
 
