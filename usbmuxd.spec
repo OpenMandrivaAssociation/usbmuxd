@@ -4,12 +4,13 @@
 
 Name:		usbmuxd
 Version:	1.0.7
-Release:	2
+Release:	3
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
 URL:		http://marcansoft.com/blog/iphonelinux/usbmuxd/
 Source0:	http://marcansoft.com/uploads/usbmuxd/%{name}-%{version}.tar.bz2
+Patch0:		usbmux_udev_owner_fix.patch
 
 BuildRequires:	usb1.0-devel >= 1.0.3
 BuildRequires:	cmake
