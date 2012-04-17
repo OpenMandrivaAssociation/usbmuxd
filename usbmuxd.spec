@@ -1,15 +1,15 @@
-%define major 1
+%define major 2
 %define libname %mklibname usbmuxd %major
 %define develname %mklibname -d usbmuxd
 
 Name:		usbmuxd
-Version:	1.0.7
-Release:	3
+Version:	1.0.8
+Release:	1
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
 URL:		http://marcansoft.com/blog/iphonelinux/usbmuxd/
-Source0:	http://marcansoft.com/uploads/usbmuxd/%{name}-%{version}.tar.bz2
+Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
 Patch0:		usbmux_udev_owner_fix.patch
 
 BuildRequires:	usb1.0-devel >= 1.0.3
@@ -40,7 +40,6 @@ Files for development with %{name}.
 
 %prep
 %setup -q
-%apply_patches
 
 %build
 %cmake
@@ -64,6 +63,8 @@ rm -rf %{buildroot}
 
 %files -n %{libname}
 %{_libdir}/libusbmuxd.so.%{major}*
+%{_libdir}/libusbmuxd.so.%{version}
+
 
 %files -n %{develname}
 %doc README.devel
