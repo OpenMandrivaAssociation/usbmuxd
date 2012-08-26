@@ -4,17 +4,19 @@
 
 Name:		usbmuxd
 Version:	1.0.8
-Release:	1
+Release:	2
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
 URL:		http://marcansoft.com/blog/iphonelinux/usbmuxd/
 Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
 Patch0:		usbmux_udev_owner_fix.patch
+Patch1:		0001-Use-systemd-to-start-usbmuxd.patch
 
 BuildRequires:	usb1.0-devel >= 1.0.3
 BuildRequires:	cmake
 BuildRequires:	libplist-devel
+BuildRequires:	systemd-units
 
 %description
 usbmuxd is a daemon used for communicating with Apple's iPod Touch and iPhone
@@ -40,13 +42,13 @@ Files for development with %{name}.
 
 %prep
 %setup -q
+%patch1 -p1
 
 %build
 %cmake
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std -C build
 
 %pre
@@ -65,10 +67,8 @@ rm -rf %{buildroot}
 %{_libdir}/libusbmuxd.so.%{major}*
 %{_libdir}/libusbmuxd.so.%{version}
 
-
 %files -n %{develname}
 %doc README.devel
 %{_includedir}/*.h
 %{_libdir}/libusbmuxd.so
 %{_libdir}/pkgconfig/libusbmuxd.pc
-
