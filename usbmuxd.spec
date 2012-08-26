@@ -62,6 +62,7 @@ Files for development with %{name}.
 /lib/udev/rules.d/85-usbmuxd.rules
 %{_bindir}/iproxy
 %{_sbindir}/usbmuxd
+%{_unitdir}/usbmuxd.service
 
 %files -n %{libname}
 %{_libdir}/libusbmuxd.so.%{major}*
