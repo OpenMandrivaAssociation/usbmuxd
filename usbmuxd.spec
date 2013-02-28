@@ -4,7 +4,7 @@
 
 Name:		usbmuxd
 Version:	1.0.8
-Release:	2
+Release:	3
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
@@ -24,6 +24,7 @@ simultaneously.
 %package -n %{libname}
 Group:		System/Libraries
 Summary:	Library to access the usbmuxd daemon
+Obsoletes:	%{mklibname usbmuxd 1} <= 1.0.7
 
 %description -n %{libname}
 libusmuxd is used to communicate with the usbmuxd daemon by apps wishing to 
