@@ -10,8 +10,7 @@ Group:		System/Kernel and hardware
 License:	GPLv2+ and LGPLv2+
 URL:		http://marcansoft.com/blog/iphonelinux/usbmuxd/
 Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
-Patch0:		usbmux_udev_owner_fix.patch
-
+Patch1:		0001-Use-systemd-to-start-usbmuxd.patch
 BuildRequires:	pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(libplist)
 BuildRequires:	cmake
@@ -43,6 +42,7 @@ Files for development with %{name}.
 
 %prep
 %setup -q
+%apply_patches
 
 %build
 %cmake -DUSB_INCLUDE_DIR=%{_includedir}/libusb-1.0
@@ -54,12 +54,18 @@ Files for development with %{name}.
 %pre
 %_pre_useradd usbmux /proc /sbin/nologin
 
+%post
+%systemd_post usbmuxd.service
+
 %postun
+%systemd_preun usbmuxd.service
 %_postun_userdel usbmux
+
 
 %files
 %doc AUTHORS README
 /lib/udev/rules.d/85-usbmuxd.rules
+%{_unitdir}/usbmuxd.service
 %{_bindir}/iproxy
 %{_sbindir}/usbmuxd
 
