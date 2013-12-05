@@ -15,8 +15,8 @@ Patch0:		usbmux_udev_owner_fix.patch
 BuildRequires:	pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(libplist)
 BuildRequires:	cmake
-BuildRequires:	systemd-devel
-Requires(pre,postun): rpm-helper
+BuildRequires:	pkgconfig(systemd)
+Requires(pre,postun):	rpm-helper
 
 %description
 usbmuxd is a daemon used for communicating with Apple's iPod Touch and iPhone
