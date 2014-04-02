@@ -1,2 +1,4 @@
+removed_sources:
+  usbmuxd-1.0.8.tar.bz2: 56bd90d5ff94c1d9c528f8b49deffea25b7384e8
 sources:
-  "usbmuxd-1.0.8.tar.bz2": 56bd90d5ff94c1d9c528f8b49deffea25b7384e8
+  usbmuxd-290314.tar.bz2: 0af9a2543b5226bc42afedddaa46cded024412ef
