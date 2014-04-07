@@ -5,7 +5,7 @@ Name:		usbmuxd
 Version:	1.0.9
 %if %snapshot
 Release:	0.290314.1
-Source0:	%name-%{snapshot}.tar.bz2
+Source0:	%name-%{snapshot}.tar.xz
 %else
 Release:	1
 Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar
