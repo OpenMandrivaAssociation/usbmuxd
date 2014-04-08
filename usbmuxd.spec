@@ -18,6 +18,8 @@ Patch1:		add_systemd_functionality.patch
 BuildRequires:	pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(libplist) =>1.1
 BuildRequires:	pkgconfig(systemd)
+BuildRequires:  pkgconfig(libimobiledevice-1.0)
+
 Requires(pre,postun):	rpm-helper
 
 %description
