@@ -14,7 +14,7 @@ Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
 URL:		http://marcansoft.com/blog/iphonelinux/usbmuxd/
-Patch1:		0001-Use-systemd-to-start-usbmuxd.patch
+Patch1:		add_systemd_functionality.patch
 BuildRequires:	pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(libplist) =>1.1
 BuildRequires:	pkgconfig(systemd)
