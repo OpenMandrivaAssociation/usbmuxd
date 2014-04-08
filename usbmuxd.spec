@@ -8,7 +8,7 @@ Release:	0.290314.1
 Source0:	%name-%{snapshot}.tar.xz
 %else
 Release:	1
-Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar
+Source0:	http://www.libimobiledevice.org/downloads/%{name}.tar
 %endif
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 Group:		System/Kernel and hardware 
@@ -17,7 +17,6 @@ URL:		http://marcansoft.com/blog/iphonelinux/usbmuxd/
 Patch1:		0001-Use-systemd-to-start-usbmuxd.patch
 BuildRequires:	pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(libplist) =>1.1
-BuildRequires:	cmake
 BuildRequires:	pkgconfig(systemd)
 Requires(pre,postun):	rpm-helper
 
@@ -31,11 +30,11 @@ simultaneously.
 %apply_patches
 
 %build
-%cmake -DUSB_INCLUDE_DIR=%{_includedir}/libusb-1.0
+%configure
 %make
 
 %install
-%makeinstall_std -C build
+%makeinstall_std
 
 %pre
 %_pre_useradd usbmux /proc /sbin/nologin
