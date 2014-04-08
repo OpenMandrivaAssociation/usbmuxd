@@ -30,6 +30,7 @@ simultaneously.
 %apply_patches
 
 %build
+autogen.sh
 %configure
 %make
 
