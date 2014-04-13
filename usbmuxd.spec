@@ -32,8 +32,9 @@ simultaneously.
 %apply_patches
 
 %build
+
 ./autogen.sh
-%configure
+%configure2_5x
 %make
 
 %install
@@ -52,7 +53,6 @@ simultaneously.
 
 %files
 %doc AUTHORS README
-/lib/udev/rules.d/85-usbmuxd.rules
+/lib/udev/rules.d/39-usbmuxd.rules
 %{_unitdir}/usbmuxd.service
-%{_bindir}/iproxy
 %{_sbindir}/usbmuxd
