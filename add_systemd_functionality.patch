@@ -26,11 +26,11 @@ diff -Nru usbmuxd-1.0.9/udev/39-usbmuxd.rules.in usbmuxd-1.0.9.orig/udev/39-usbm
  
  # Initialize iOS devices into "deactivated" USB configuration state and run usbmuxd
 -ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="05ac", ATTR{idProduct}=="12[9a][0-9a-f]", ENV{USBMUX_SUPPORTED}="1", ATTR{bConfigurationValue}="0", OWNER="usbmux", RUN+="@prefix@/sbin/usbmuxd -u -U usbmux"
-+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="05ac", ATTR{idProduct}=="12[9a][0-9a-f]", ENV{USBMUX_SUPPORTED}="1", ATTR{bConfigurationValue}!="$attr{bNumConfigurations}", ATTR{bConfigurationValue}="$attr{bNumConfigurations}", OWNER="usbmux", TAG+="systemd", ENV{SYSTEMD_WANTS}="usbmuxd.service"
++ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="05ac", ATTR{idProduct}=="12[9a][0-9a-f]", ENV{USBMUX_SUPPORTED}="1", ATTR{bConfigurationValue}="0", OWNER="usbmux", TAG+="systemd", ENV{SYSTEMD_WANTS}="usbmuxd.service"
  
  # Exit usbmuxd when the last device is removed
 -ACTION=="remove", SUBSYSTEM=="usb", ENV{PRODUCT}=="5ac/12[9a][0-9a-f]/*", ENV{INTERFACE}=="255/*", RUN+="@prefix@/sbin/usbmuxd -x"
-+ACTION=="remove", SUBSYSTEM=="usb", ENV{PRODUCT}=="5ac/12[9a][0-9a-f]/*", ENV{INTERFACE}=="255/*", RUN+="@CMAKE_INSTALL_PREFIX@/sbin/usbmuxd -x"
++ACTION=="remove", SUBSYSTEM=="usb", ENV{PRODUCT}=="5ac/12[9a][0-9a-f]/*", ENV{INTERFACE}=="255/*", RUN+="@prefix@/sbin/usbmuxd -x"
 diff -Nru usbmuxd-1.0.9/udev/usbmuxd.service.in usbmuxd-1.0.9.orig/udev/usbmuxd.service.in
 --- usbmuxd-1.0.9/udev/usbmuxd.service.in	1970-01-01 01:00:00.000000000 +0100
 +++ usbmuxd-1.0.9.orig/udev/usbmuxd.service.in	2014-04-08 09:57:09.000000000 +0100

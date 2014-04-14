@@ -1,10 +1,10 @@
-%define snapshot 290314
+%define snapshot 140414
 
 
 Name:		usbmuxd
 Version:	1.0.9
 %if %snapshot
-Release:	0.290314.1
+Release:	0.140414.1
 Source0:	%name-%{snapshot}.tar.xz
 %else
 Release:	1
