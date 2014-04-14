@@ -1,7 +1,6 @@
-diff --git a/src/client.c b/src/client.c
-index c6a7ce8..af8b817 100644
---- a/src/client.c
-+++ b/src/client.c
+diff  usbmuxd-1.0.9/src/client.c usbmuxd-1.0.0.9.orig/src/client.c
+--- usbmuxd-1.0.9/src/client.c
++++ usbmuxd-1.0.9.orig/src/client.c
 @@ -476,6 +476,11 @@ static int client_command(struct mux_client *client, struct usbmuxd_header *hdr)
                         } else {
                                 char *message = NULL;
