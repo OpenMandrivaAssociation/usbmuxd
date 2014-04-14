@@ -15,6 +15,7 @@ Group:		System/Kernel and hardware
 License:	GPLv2+ and LGPLv2+
 URL:		http://marcansoft.com/blog/iphonelinux/usbmuxd/
 Patch1:		add_systemd_functionality.patch
+Patch2:		client_c_segfault.patch
 BuildRequires:	pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(libplist) =>1.1
 BuildRequires:	pkgconfig(systemd)
