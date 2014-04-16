@@ -25,7 +25,7 @@ diff -Nru usbmuxd-1.0.9/udev/39-usbmuxd.rules.in usbmuxd-1.0.9.orig/udev/39-usbm
  # usbmuxd ("Apple Mobile Device" muxer listening on /var/run/usbmuxd)
  
  # Initialize iOS devices into "deactivated" USB configuration state and run usbmuxd
--ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="05ac", ATTR{idProduct}=="12[9a][0-9a-f]", ENV{USBMUX_SUPPORTED}="1", ATTR{bConfigurationValue}="0", OWNER="usbmux", RUN+="/usr/sbin/usbmuxd -u -U usbmux"
+-ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="05ac", ATTR{idProduct}=="12[9a][0-9a-f]", ENV{USBMUX_SUPPORTED}="1", ATTR{bConfigurationValue}="0", OWNER="usbmux", RUN+="/@prefix@/sbin/usbmuxd -u -U usbmux"
 +ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="05ac", ATTR{idProduct}=="12[9a][0-9a-f]", ENV{USBMUX_SUPPORTED}="1", ATTR{bConfigurationValue}="0", OWNER="usbmux", TAG+="systemd", ENV{SYSTEMD_WANTS}="usbmuxd.service"
  
  # Exit usbmuxd when the last device is removed
