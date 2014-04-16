@@ -30,7 +30,7 @@ diff -Nru usbmuxd-1.0.9/udev/39-usbmuxd.rules.in usbmuxd-1.0.9.orig/udev/39-usbm
  
  # Exit usbmuxd when the last device is removed
 -ACTION=="remove", SUBSYSTEM=="usb", ENV{PRODUCT}=="5ac/12[9a][0-9a-f]/*", ENV{INTERFACE}=="255/*", RUN+="@prefix@/sbin/usbmuxd -x"
-+ACTION=="remove", SUBSYSTEM=="usb", ENV{PRODUCT}=="5ac/12[9a][0-9a-f]/*", ENV{INTERFACE}=="255/*", RUN+="@prefix@/sbin/usbmuxd -x"
++ACTION=="remove", SUBSYSTEM=="usb", ENV{PRODUCT}=="5ac/12[9a][0-9a-f]/*", ENV{INTERFACE}=="255/*", RUN+="/usr/sbin/usbmuxd -x"
 diff -Nru usbmuxd-1.0.9/udev/usbmuxd.service.in usbmuxd-1.0.9.orig/udev/usbmuxd.service.in
 --- usbmuxd-1.0.9/udev/usbmuxd.service.in	1970-01-01 01:00:00.000000000 +0100
 +++ usbmuxd-1.0.9.orig/udev/usbmuxd.service.in	2014-04-08 09:57:09.000000000 +0100
@@ -40,5 +40,5 @@ diff -Nru usbmuxd-1.0.9/udev/usbmuxd.service.in usbmuxd-1.0.9.orig/udev/usbmuxd.
 +
 +[Service]
 +Type=simple
-+ExecStart=/sbin/usbmuxd -u -U usbmux
++ExecStart=/usr/sbin/usbmuxd -u -U usbmux
 +PIDFile=/var/run/usbmuxd.pid
