@@ -4,10 +4,10 @@
 Name:		usbmuxd
 Version:	1.0.9
 %if %snapshot
-Release:	0.140414.3
+Release:	0.140414.4
 Source0:	%name-%{snapshot}.tar.xz
 %else
-Release:	1
+Release:	2
 Source0:	http://www.libimobiledevice.org/downloads/%{name}.tar
 %endif
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
