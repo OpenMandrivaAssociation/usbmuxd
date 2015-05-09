@@ -45,3 +45,4 @@ EOF
 %{_presetdir}/86-usbmuxd.preset
 %{_unitdir}/usbmuxd.service
 %{_sbindir}/usbmuxd
+%{_mandir}/man1/usbmuxd.1.*
