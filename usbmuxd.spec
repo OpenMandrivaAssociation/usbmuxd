@@ -1,21 +1,11 @@
-%define snapshot 140414
-
-
-Name:		usbmuxd
-Version:	1.0.9
-%if %snapshot
-Release:	0.140414.6
-Source0:	%name-%{snapshot}.tar.xz
-%else
-Release:	4
-Source0:	http://www.libimobiledevice.org/downloads/%{name}.tar
-%endif
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
+Name:		usbmuxd
+Version:	1.1.0
+Release:	1
 Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
-URL:		http://marcansoft.com/blog/iphonelinux/usbmuxd/
-Patch1:		add_systemd_functionality.patch
-Patch2:		client_c_segfault.patch
+URL:		http://www.libimobiledevice.org/
+Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
 BuildRequires:	pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(libplist) =>1.1
 BuildRequires:	pkgconfig(systemd)
@@ -30,30 +20,28 @@ simultaneously.
 
 %prep
 %setup -q
-%apply_patches
 
 %build
-
-./autogen.sh
-%configure2_5x
+%configure
 %make
 
 %install
 %makeinstall_std
 
+install -d %{buildroot}%{_presetdir}
+cat > %{buildroot}%{_presetdir}/86-usbmuxd.preset << EOF
+enable usbmuxd.service
+EOF
+
 %pre
 %_pre_useradd usbmux /proc /sbin/nologin
 
-%post
-%systemd_post usbmuxd.service
-
 %postun
-%systemd_preun usbmuxd.service
 %_postun_userdel usbmux
-
 
 %files
 %doc AUTHORS README
 /lib/udev/rules.d/39-usbmuxd.rules
+%{_presetdir}/86-usbmuxd.preset
 %{_unitdir}/usbmuxd.service
 %{_sbindir}/usbmuxd
