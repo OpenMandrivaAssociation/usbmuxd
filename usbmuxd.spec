@@ -22,7 +22,7 @@ simultaneously.
 %setup -q
 
 %build
-%configure
+%configure --with-udevrulesdir="/lib/udev/rules.d/"
 %make
 
 %install
