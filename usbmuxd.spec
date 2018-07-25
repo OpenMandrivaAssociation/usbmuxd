@@ -9,6 +9,7 @@ Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
 BuildRequires:	pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(libplist) >= 1.1
 BuildRequires:	pkgconfig(systemd)
+BuildRequires:	systemd-macros
 BuildRequires:  pkgconfig(libimobiledevice-1.0)
 Requires(pre,postun):	rpm-helper
 
