@@ -1,7 +1,7 @@
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 Name:		usbmuxd
 Version:	1.1.0
-Release:	4
+Release:	5
 Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
 URL:		http://www.libimobiledevice.org/
@@ -12,6 +12,7 @@ BuildRequires:	pkgconfig(systemd)
 BuildRequires:	systemd-macros
 BuildRequires:  pkgconfig(libimobiledevice-1.0)
 Requires(pre,postun):	rpm-helper
+BuildRequires:		rpm-helper
 
 %description
 usbmuxd is a daemon used for communicating with Apple's iPod Touch and iPhone
