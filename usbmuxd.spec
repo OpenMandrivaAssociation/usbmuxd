@@ -1,13 +1,14 @@
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 Name:		usbmuxd
-Version:	1.1.0
-Release:	8
+Version:	1.1.1
+Release:	1
 Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
 URL:		http://www.libimobiledevice.org/
 Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
+
 BuildRequires:	pkgconfig(libusb-1.0)
-BuildRequires:	pkgconfig(libplist) >= 1.1
+BuildRequires:	pkgconfig(libplist-2.0) >= 2.2.0
 BuildRequires:	pkgconfig(systemd)
 BuildRequires:	systemd-macros
 BuildRequires:  pkgconfig(libimobiledevice-1.0)
@@ -24,10 +25,10 @@ simultaneously.
 
 %build
 %configure --with-udevrulesdir="/lib/udev/rules.d/"
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make-install
 
 install -d %{buildroot}%{_presetdir}
 cat > %{buildroot}%{_presetdir}/86-usbmuxd.preset << EOF
