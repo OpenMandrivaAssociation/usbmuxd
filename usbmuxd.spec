@@ -42,9 +42,8 @@ EOF
 %_postun_userdel usbmux
 
 %files
-%doc AUTHORS README
+%doc AUTHORS
 /lib/udev/rules.d/39-usbmuxd.rules
 %{_presetdir}/86-usbmuxd.preset
 %{_unitdir}/usbmuxd.service
 %{_sbindir}/usbmuxd
-%{_mandir}/man1/usbmuxd.1.*
