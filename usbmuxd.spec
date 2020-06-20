@@ -28,7 +28,7 @@ simultaneously.
 %make_build
 
 %install
-%make-install
+%make_install
 
 install -d %{buildroot}%{_presetdir}
 cat > %{buildroot}%{_presetdir}/86-usbmuxd.preset << EOF
