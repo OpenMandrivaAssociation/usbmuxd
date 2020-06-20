@@ -47,3 +47,4 @@ EOF
 %{_presetdir}/86-usbmuxd.preset
 %{_unitdir}/usbmuxd.service
 %{_sbindir}/usbmuxd
+%{_mandir}/man8/usbmuxd.8.*
