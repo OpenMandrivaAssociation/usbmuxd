@@ -1,7 +1,7 @@
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 Name:		usbmuxd
 Version:	1.1.1
-Release:	1
+Release:	2
 Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
 URL:		http://www.libimobiledevice.org/
@@ -38,7 +38,14 @@ EOF
 %pre
 %_pre_useradd usbmux /proc /sbin/nologin
 
+%preun
+%systemd_preun usbmuxd.service
+
+%post
+%systemd_post usbmuxd.service
+
 %postun
+%systemd_postun_with_restart usbmuxd.service
 %_postun_userdel usbmux
 
 %files
