@@ -1,19 +1,19 @@
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 Name:		usbmuxd
 Version:	20210202
-Release:	1
+Release:	2
 Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
 URL:		http://www.libimobiledevice.org/
 Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.xz
-
+Source1:	%{name}.sysusers
 BuildRequires:	pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(libplist-2.0) >= 2.2.0
 BuildRequires:	pkgconfig(systemd)
-BuildRequires:	systemd-macros
-BuildRequires:  pkgconfig(libimobiledevice-1.0)
-Requires(pre,postun):	rpm-helper
-BuildRequires:		rpm-helper
+BuildRequires:	systemd-rpm-macros
+BuildRequires:	pkgconfig(libimobiledevice-1.0)
+Requires(pre):	systemd
+%systemd_requires
 
 %description
 usbmuxd is a daemon used for communicating with Apple's iPod Touch and iPhone
@@ -21,11 +21,11 @@ devices. It allows multiple services on the device to be accessed
 simultaneously.
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
 ./autogen.sh
-%configure --with-udevrulesdir="/lib/udev/rules.d/"
+%configure --with-udevrulesdir="%{_udevrulesdir}"
 %make_build
 
 %install
@@ -36,8 +36,10 @@ cat > %{buildroot}%{_presetdir}/86-usbmuxd.preset << EOF
 enable usbmuxd.service
 EOF
 
+install -Dpm 644 %{SOURCE1} %{buildroot}%{_sysusersdir}/%{name}.conf
+
 %pre
-%_pre_useradd usbmux /proc /sbin/nologin
+%sysusers_create_package %{name}.conf %{SOURCE1}
 
 %preun
 %systemd_preun usbmuxd.service
@@ -47,12 +49,12 @@ EOF
 
 %postun
 %systemd_postun_with_restart usbmuxd.service
-%_postun_userdel usbmux
 
 %files
 %doc AUTHORS
-/lib/udev/rules.d/39-usbmuxd.rules
+%{_udevrulesdir}/39-usbmuxd.rules
 %{_presetdir}/86-usbmuxd.preset
 %{_unitdir}/usbmuxd.service
 %{_sbindir}/usbmuxd
 %{_mandir}/man8/usbmuxd.8.*
+%{_sysusersdir}/%{name}.conf
