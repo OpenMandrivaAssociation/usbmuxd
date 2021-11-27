@@ -1,7 +1,9 @@
+%define	git	20211124
+
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 Name:		usbmuxd
-Version:	20210202
-Release:	2
+Version:	1.1.2
+Release:	1.%{git}.0
 Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
 URL:		http://www.libimobiledevice.org/
