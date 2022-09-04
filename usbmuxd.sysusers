@@ -1,1 +1,1 @@
-u usbmuxd - "usbmuxd user" /proc /sbin/nologin
+u usbmux - "usbmuxd user" /proc /sbin/nologin
