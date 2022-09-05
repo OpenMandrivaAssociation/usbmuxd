@@ -3,7 +3,7 @@
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 Name:		usbmuxd
 Version:	1.1.2
-Release:	0.%{git}.1
+Release:	0.%{git}.2
 Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
 URL:		http://www.libimobiledevice.org/
@@ -58,5 +58,5 @@ install -Dpm 644 %{SOURCE1} %{buildroot}%{_sysusersdir}/%{name}.conf
 %{_presetdir}/86-usbmuxd.preset
 %{_unitdir}/usbmuxd.service
 %{_sbindir}/usbmuxd
-%{_mandir}/man8/usbmuxd.8.*
+%doc %{_mandir}/man8/usbmuxd.8.*
 %{_sysusersdir}/%{name}.conf
