@@ -1,0 +1,5 @@
+When creating a new version from git it is necessary to create a version file called .tarball-version
+To do this download the latest usbmuxd and from within the source directory run ./gin-version-gen > tarball-version to create the file.
+Then create the tarball with an appropriate version as in the example below:- 
+git archive --prefix=usbmuxd-1.1.2/ --add-file .tarball-version >usbmuxd-1.1.2.tar.xz HEAD git archive 
+itchka@compuserve.com Feb 2023
