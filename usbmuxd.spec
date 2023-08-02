@@ -1,13 +1,17 @@
-%define	git	20230223
+%define	git	20230802
 
 Summary:	Daemon for communicating with Apple's iPod Touch and iPhone
 Name:		usbmuxd
 Version:	1.1.2
-Release:	0.%{git}.1
+Release:	%{?git:0.%{git}.}1
 Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
 URL:		http://www.libimobiledevice.org/
+%if 0%{?git:1}
+Source0:	https://github.com/libimobiledevice/usbmuxd/archive/refs/heads/master.tar.gz#/%{name}-%{git}.tar.gz
+%else
 Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.xz
+%endif
 Source1:	%{name}.sysusers
 BuildRequires:	pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(libplist-2.0) >= 2.2.0
@@ -23,7 +27,10 @@ devices. It allows multiple services on the device to be accessed
 simultaneously.
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n %{name}-%{?git:master}%{!?git:%{version}}
+%if 0%{?git:1}
+echo %{version} >.tarball-version
+%endif
 
 %build
 ./autogen.sh
