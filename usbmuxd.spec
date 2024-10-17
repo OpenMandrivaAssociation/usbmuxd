@@ -6,7 +6,7 @@ Version:	1.1.2
 Release:	%{?git:0.%{git}.}1
 Group:		System/Kernel and hardware 
 License:	GPLv2+ and LGPLv2+
-URL:		http://www.libimobiledevice.org/
+URL:		https://www.libimobiledevice.org/
 %if 0%{?git:1}
 Source0:	https://github.com/libimobiledevice/usbmuxd/archive/refs/heads/master.tar.gz#/%{name}-%{git}.tar.gz
 %else
