@@ -13,6 +13,11 @@ Source0:	https://github.com/libimobiledevice/usbmuxd/archive/refs/heads/master.t
 Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.xz
 %endif
 Source1:	%{name}.sysusers
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(libusb-1.0)
 BuildRequires:	pkgconfig(libplist-2.0) >= 2.2.0
 BuildRequires:	pkgconfig(systemd)
